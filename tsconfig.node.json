@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "types": ["node"]
+  },
+  "include": [
+    "src/node.ts",
+    "src/node-modules/**/*.ts",
+    "src/common-modules/**/*.ts",
+    "src/interfaces/**/*.ts",
+    ".eslintrc.cjs",
+    "jest.config.cjs",
+    "rollup.config.js"
+  ]
+}
