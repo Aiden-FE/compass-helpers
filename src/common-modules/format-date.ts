@@ -5,6 +5,7 @@
  * @param [option] 配置项
  * @param [option.isPadStart=true] 是否填充字符
  * @param [option.padSymbol='0'] 填充字符
+ * @category Date
  * @example
  * import { formatDate } from '@compass-aiden/utils';
  *

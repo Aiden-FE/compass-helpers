@@ -2,6 +2,7 @@
  * @description 加密手机号码,脱敏处理
  * @param phone 手机号码或国际号码
  * @param options 配置对象
+ * @category Tools
  */
 export default function encodePhoneNumber(
   phone: string,

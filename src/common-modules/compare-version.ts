@@ -1,5 +1,6 @@
 /**
  * @description 比较两个版本的大小
+ * @category Tools
  * @param currentVersion 当前版本
  * @param comparedVersion 比较的版本
  * @param trimSymbolPattern 匹配正则,符合条件的字符在移除后进行比较,默认匹配v字符

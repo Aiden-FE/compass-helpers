@@ -88,6 +88,7 @@ const defaultConfig = (): LoggerOption => ({
 
 /**
  * @description 日志记录器
+ * @category Factories
  * @example
  * import { Logger } from '@compass-aiden/utils';
  *

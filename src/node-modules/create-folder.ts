@@ -6,6 +6,7 @@ import { stat, mkdirSync } from 'fs';
  * @param targetPath 目标路径
  * @param [options] 配置项
  * @param [options.cwd=process.cwd()] 执行路径
+ * @category Tools
  */
 export default function createFolder(
   targetPath: string,

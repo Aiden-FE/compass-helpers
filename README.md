@@ -4,5 +4,4 @@
 
 ## TODOList
 
-- commitlint
 - getting started

@@ -13,5 +13,6 @@
     "jest.config.cjs",
     "rollup.config.js",
     "commitlint.config.js"
-  ]
+  ],
+  "exclude": ["src/**/*.spec.ts"]
 }

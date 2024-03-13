@@ -158,6 +158,7 @@ tmp
 out-tsc
 lib
 dist
+docs
 
 # Only exists if Bazel was run
 bazel-out

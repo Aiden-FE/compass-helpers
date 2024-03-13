@@ -8,6 +8,7 @@ import { writeFileSync } from 'fs';
  * @param options 配置项
  * @param options.cwd 执行路径, 默认process.cwd()
  * @param options.encoding 编码格式, 默认utf8
+ * @category Tools
  */
 export default function createFile(
   filePath: string,

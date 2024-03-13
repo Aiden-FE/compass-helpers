@@ -2,12 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "composite": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": ["ESNext", "DOM"]
   },
-  "include": [
-    "src/browser.ts",
-    "src/browser-modules/**/*.ts",
-    "src/common-modules/**/*.ts",
-    "src/interfaces/**/*.ts"
-  ]
+  "include": ["src/browser.ts", "src/browser-modules/**/*.ts", "src/common-modules/**/*.ts", "src/interfaces/**/*.ts"],
+  "exclude": ["src/**/*.spec.ts"]
 }

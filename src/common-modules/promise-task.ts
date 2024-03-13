@@ -2,6 +2,7 @@
  * @description 异步事务处理, 捕获异常不阻塞程序
  * @param promise
  * @param [errorExt] 希望附加的额外错误信息数据
+ * @category Tools
  */
 export default function promiseTask<Result = unknown, ExtraProperty extends object = object>(
   promise: Promise<Result>,

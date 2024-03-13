@@ -57,6 +57,9 @@
     "lint": "eslint src --ext .ts,.js --fix",
     "format": "prettier --write src",
     "test": "jest --coverage",
+    "build:doc": "npm run build:doc-browser && npm run build:doc-node",
+    "build:doc-browser": "typedoc src/browser.ts --tsconfig tsconfig.browser.json --out docs/browser --name \"Compass helpers for browser platforms\"",
+    "build:doc-node": "typedoc src/node.ts --tsconfig tsconfig.node.json --out docs/node --name \"Compass helpers for node platforms\"",
     "prepare": "npx simple-git-hooks",
     "clean": "rimraf dist && rimraf types && rimraf coverage"
   },
@@ -94,6 +97,7 @@
     "rollup-plugin-visualizer": "^5.12.0",
     "simple-git-hooks": "^2.10.0",
     "ts-jest": "^29.1.2",
+    "typedoc": "^0.25.12",
     "typescript": "^5.4.2"
   }
 }
