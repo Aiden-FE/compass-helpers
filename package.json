@@ -61,9 +61,12 @@
     "clean": "rimraf dist && rimraf types && rimraf coverage"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx pretty-quick --staged"
+    "pre-commit": "npx pretty-quick --staged",
+    "commit-msg": "npx --no -- commitlint --edit $1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.1.0",
+    "@commitlint/config-conventional": "^19.1.0",
     "@compass-aiden/eslint-config": "^1.6.3",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.1.0",

@@ -5,5 +5,4 @@
 ## TODOList
 
 - commitlint
-- before commit format
 - getting started
