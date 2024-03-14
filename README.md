@@ -46,7 +46,13 @@ import { createFile } from '@compass-aiden/helpers/node';
 const { createFile } = require('@compass-aiden/helpers');
 ```
 
-## Commands
+## Contributes
+
+### Install
+
+`pnpm install`
+
+### Base commands
 
 - `pnpm dev` 启用开发模式
 - `pnpm build` 生产构建
@@ -54,3 +60,8 @@ const { createFile } = require('@compass-aiden/helpers');
 - `pnpm format` 代码格式化
 - `pnpm test` 执行单元测试
 - `pnpm build:doc` 构建文档
+
+### Publish library
+
+1. 变更package.json内的version字段
+2. 提交合并请求至master即可
