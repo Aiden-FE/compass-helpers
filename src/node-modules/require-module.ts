@@ -6,6 +6,7 @@ import { createRequire } from 'module';
  * @category Files
  */
 export default function requireModule(filePath: string) {
+  // @ts-ignore
   const requireFunc = createRequire(import.meta.url);
   return requireFunc(filePath);
 }
