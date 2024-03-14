@@ -37,7 +37,7 @@
     "types"
   ],
   "author": "Aiden_FE@outlook.com",
-  "repository": "",
+  "repository": "https://github.com/Aiden-FE/compass-helpers",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

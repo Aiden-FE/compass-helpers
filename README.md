@@ -50,7 +50,3 @@ const { createFile } = require('@compass-aiden/helpers');
 - `pnpm format` 代码格式化
 - `pnpm test` 执行单元测试
 - `pnpm build:doc` 构建文档
-
-## Roadmap
-
-- [ ] Github actions lint and deploy
