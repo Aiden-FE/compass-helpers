@@ -65,6 +65,7 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |
           pnpm build
+          pnpm build:doc
 
       # 发布npm包
       - name: Publish
