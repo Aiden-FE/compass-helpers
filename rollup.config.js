@@ -69,7 +69,7 @@ function getOutput(options = {}) {
 export default [
   // umd
   IS_PROD && {
-    input: 'src/browser.ts',
+    input: 'src/web.ts',
     output: getOutput({
       format: 'umd',
       file: 'dist/compass-helpers.umd.js',
@@ -82,7 +82,7 @@ export default [
     external: getExternal(),
     plugins: getPlugins({
       ts: {
-        tsconfig: './tsconfig.browser.json',
+        tsconfig: './tsconfig.web.json',
       },
       nodeResolve: { browser: true },
     }),
@@ -105,12 +105,12 @@ export default [
   },
   // browser
   {
-    input: 'src/browser.ts',
+    input: 'src/web.ts',
     output: getOutput(),
     external: getExternal(),
     plugins: getPlugins({
       ts: {
-        tsconfig: './tsconfig.browser.json',
+        tsconfig: './tsconfig.web.json',
       },
     }),
     watch: {

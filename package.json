@@ -1,7 +1,7 @@
 {
   "name": "@compass-aiden/helpers",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "实用程序库",
   "main": "dist/compass-helpers.umd.js",
   "jsdelivr": "dist/compass-helpers.umd.js",
@@ -9,23 +9,23 @@
   "exports": {
     ".": {
       "types": {
-        "import": "./types/browser.es.d.ts",
+        "import": "./types/web.es.d.ts",
         "require": "./types/node.d.cts",
         "default": "./types/compass-helpers.umd.d.ts"
       },
-      "import": "./dist/browser.es.js",
+      "import": "./dist/web.es.js",
       "require": "./dist/node.cjs",
       "default": "./dist/compass-helpers.umd.js"
     },
     "./dist/*": "./dist/*",
     "./types/*": "./types/*",
-    "./node": {
+    "./cjs": {
       "types": "./types/node.d.cts",
       "default": "./dist/node.cjs"
     },
     "./esm": {
-      "types": "./types/browser.es.d.ts",
-      "default": "./dist/browser.es.js"
+      "types": "./types/web.es.d.ts",
+      "default": "./dist/web.es.js"
     },
     "./umd": {
       "types": "./types/compass-helpers.umd.d.ts",
@@ -57,11 +57,11 @@
     "lint": "eslint src --ext .ts,.js --fix",
     "format": "prettier --write src",
     "test": "jest --coverage",
-    "build:doc": "npm run build:doc-browser && npm run build:doc-node",
-    "build:doc-browser": "typedoc src/browser.ts --tsconfig tsconfig.browser.json --out docs/browser --name \"Compass helpers for browser platforms\"",
+    "build:doc": "npm run build:doc-web && npm run build:doc-node",
+    "build:doc-web": "typedoc src/web.ts --tsconfig tsconfig.web.json --out docs/web --name \"Compass helpers for web platforms\"",
     "build:doc-node": "typedoc src/node.ts --tsconfig tsconfig.node.json --out docs/node --name \"Compass helpers for node platforms\"",
     "prepare": "npx simple-git-hooks",
-    "clean": "rimraf dist && rimraf types && rimraf coverage"
+    "clean": "rimraf dist && rimraf types && rimraf coverage && rimraf docs && rimraf stats.html"
   },
   "simple-git-hooks": {
     "pre-commit": "npx pretty-quick --staged",

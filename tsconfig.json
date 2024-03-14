@@ -20,7 +20,7 @@
     "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
   },
   "references": [
-    { "path": "./tsconfig.browser.json" },
+    { "path": "./tsconfig.web.json" },
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.test.json" }
   ]

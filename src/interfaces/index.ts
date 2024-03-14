@@ -1,4 +1,7 @@
-/** 将类型递归变成可选属性 */
+/**
+ * 将类型递归变成可选属性
+ * @category Types
+ */
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends Array<infer U>
     ? Array<DeepPartial<U>>
@@ -9,7 +12,10 @@ export type DeepPartial<T> = {
         : T[P];
 };
 
-/** 将类型递归变成必填属性 */
+/**
+ * 将类型递归变成必填属性
+ * @category Types
+ */
 export type DeepRequired<T> = {
   [P in keyof T]-?: T[P] extends object ? DeepRequired<T[P]> : T[P];
 };
