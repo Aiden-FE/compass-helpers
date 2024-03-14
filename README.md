@@ -2,6 +2,10 @@
 
 > 实用程序库
 
+[Web端使用文档](https://aiden-fe.github.io/compass-helpers/browser/)
+
+[Node端使用文档](https://aiden-fe.github.io/compass-helpers/node/)
+
 ## Getting Started
 
 ### 安装
