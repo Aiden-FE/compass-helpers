@@ -1,36 +1,31 @@
 {
   "name": "@compass-aiden/helpers",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "实用程序库",
-  "main": "dist/compass-helpers.umd.js",
+  "main": "dist/web.es.js",
+  "typings": "types/web.es.d.ts",
   "jsdelivr": "dist/compass-helpers.umd.js",
   "unpkg": "dist/compass-helpers.umd.js",
   "exports": {
     ".": {
       "types": {
-        "import": "./types/web.es.d.ts",
-        "require": "./types/node.d.cts",
-        "default": "./types/compass-helpers.umd.d.ts"
+        "require": "./types/node.d.ts",
+        "default": "./types/web.es.d.ts"
       },
-      "import": "./dist/web.es.js",
-      "require": "./dist/node.cjs",
-      "default": "./dist/compass-helpers.umd.js"
+      "require": "./dist/node.js",
+      "default": "./dist/web.es.js"
     },
-    "./dist/*": "./dist/*",
-    "./types/*": "./types/*",
     "./cjs": {
-      "types": "./types/node.d.cts",
-      "default": "./dist/node.cjs"
+      "types": "./types/node.d.ts",
+      "default": "./dist/node.js"
     },
     "./esm": {
       "types": "./types/web.es.d.ts",
       "default": "./dist/web.es.js"
     },
-    "./umd": {
-      "types": "./types/compass-helpers.umd.d.ts",
-      "default": "./dist/compass-helpers.umd.js"
-    }
+    "./dist/*": "./dist/*",
+    "./types/*": "./types/*"
   },
   "files": [
     "dist",

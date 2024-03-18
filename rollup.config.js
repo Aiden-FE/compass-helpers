@@ -93,7 +93,7 @@ export default [
     output: getOutput({
       format: 'cjs',
       exports: 'auto',
-      entryFileNames: '[name].[format]',
+      entryFileNames: '[name].js',
     }),
     external: getExternal(),
     plugins: getPlugins({

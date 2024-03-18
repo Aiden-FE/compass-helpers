@@ -21,15 +21,13 @@ import { formatDate } from '@compass-aiden/helpers';
 import * as allHelpers from '@compass-aiden/helpers';
 // 通过别名路径导入esm文件
 import { formatDate } from '@compass-aiden/helpers/esm';
-// 导入umd文件
-import '@compass-aiden/helpers/umd';
 ```
 
 浏览器script标签安装:
 
 ```html
 <!-- 请根据个人需求采用unpkg或者jsdelivr链接 -->
-<script src="https://unpkg.com/@compass-aiden/helpers@0.0.1/dist/compass-helpers.umd.js"></script>
+<script src="https://unpkg.com/@compass-aiden/helpers@latest/dist/compass-helpers.umd.js"></script>
 <script>
   console.log(window.CompassHelpers.formatDate());
 </script>
@@ -42,14 +40,16 @@ npm方式安装:
 `npm install @compass-aiden/helpers`
 
 ```typescript
-// 自动识别导入cjs文件, 如果无法识别为cjs导入, 可在tsconfig 设置 { "module": "NodeNext", "moduleResolution": "NodeNext" }或通过其他方式导入
-import { createFile } from '@compass-aiden/helpers';
-// 全量导入
-import * as allHelpers from '@compass-aiden/helpers';
-// 通过别名路径导入cjs文件
-import { createFile } from '@compass-aiden/helpers/cjs';
 // 自动导入cjs文件
 const { createFile } = require('@compass-aiden/helpers');
+// 全量导入
+const { createFile } = require('@compass-aiden/helpers');
+
+/** 在type: module启用ESM环境下,请参考如下方式 */
+// 通过别名路径导入cjs文件,如果不能识别条件导出,tsconfig可设置 `{ "moduleResolution": "bundler" }`
+import { createFile } from '@compass-aiden/helpers/cjs';
+// 自动导入默认cjs文件, 当 tsconfig 配置包含 `{ "moduleResolution": "NodeNext" }`时可用
+import { createFile } from '@compass-aiden/helpers';
 ```
 
 ## Contributes
