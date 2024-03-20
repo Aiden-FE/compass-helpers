@@ -10,7 +10,7 @@ import { stat, mkdirSync } from 'fs';
  */
 export default function createFolder(
   targetPath: string,
-  options: {
+  options?: {
     cwd?: string;
   },
 ) {
@@ -19,12 +19,12 @@ export default function createFolder(
     ...options,
   };
   const target = resolve(cwd, targetPath);
-  return new Promise<true>((res) => {
+  return new Promise<void>((res) => {
     stat(target, (err, stats) => {
       if (err || !stats) {
         mkdirSync(target, { recursive: true });
       }
-      res(true);
+      res();
     });
   });
 }
