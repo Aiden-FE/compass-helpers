@@ -5,5 +5,6 @@ import requireModule from './require-module';
 import scanDependencyManager from './scan-dependency-manager';
 
 export * from './create-file';
+export * from './copy-folder';
 
 export { createFolder, isCommandExists, isFileOrFolderExists, requireModule, scanDependencyManager };

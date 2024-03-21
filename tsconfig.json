@@ -9,7 +9,7 @@
     "declarationDir": "types",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
