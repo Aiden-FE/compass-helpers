@@ -1,7 +1,7 @@
 {
   "name": "@compass-aiden/helpers",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "实用程序库",
   "main": "dist/web.es.js",
   "typings": "types/web.es.d.ts",
