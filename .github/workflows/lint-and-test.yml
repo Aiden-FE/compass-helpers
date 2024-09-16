@@ -25,7 +25,7 @@ jobs:
       # 设置pnpm
       - uses: pnpm/action-setup@v2
         with:
-          version: 8.7.1
+          version: 9.4.0
 
       # 设置 pnpm 缓存文件
       - name: Cache pnpm
