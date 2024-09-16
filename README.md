@@ -15,12 +15,12 @@ npm方式安装:
 `npm install @compass-aiden/helpers`
 
 ```typescript
-// 自动识别导入esm文件
+// 按需导入,自动识别导入esm文件
 import { formatDate } from '@compass-aiden/helpers';
 // 全量导入
 import * as allHelpers from '@compass-aiden/helpers';
 // 通过别名路径导入esm文件
-import { formatDate } from '@compass-aiden/helpers/esm';
+import { formatDate } from '@compass-aiden/helpers/web';
 ```
 
 浏览器script标签安装:
@@ -40,14 +40,16 @@ npm方式安装:
 `npm install @compass-aiden/helpers`
 
 ```typescript
-// 自动导入cjs文件
+// 按需导入 自动导入cjs文件
 const { createFile } = require('@compass-aiden/helpers');
 // 全量导入
-const { createFile } = require('@compass-aiden/helpers');
+const helpers = require('@compass-aiden/helpers');
 
 /** 在type: module启用ESM环境下,请参考如下方式 */
 // 通过别名路径导入cjs文件,如果不能识别条件导出,tsconfig可设置 `{ "moduleResolution": "bundler" }`
 import { createFile } from '@compass-aiden/helpers/cjs';
+// 导入esm文件
+import { createFile } from '@compass-aiden/helpers/mjs';
 // 自动导入默认cjs文件, 当 tsconfig 配置包含 `{ "moduleResolution": "NodeNext" }`时可用
 import { createFile } from '@compass-aiden/helpers';
 ```
@@ -90,5 +92,4 @@ export default function example() {
 
 ### Publish library
 
-1. 变更package.json内的version字段
-2. 提交合并请求至master即可
+1. 提交合并请求至master即可

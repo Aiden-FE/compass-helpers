@@ -87,13 +87,27 @@ export default [
       nodeResolve: { browser: true },
     }),
   },
-  // node
+  // node cjs
   IS_PROD && {
     input: 'src/node.ts',
     output: getOutput({
       format: 'cjs',
       exports: 'auto',
-      entryFileNames: '[name].js',
+      entryFileNames: '[name].cjs',
+    }),
+    external: getExternal(),
+    plugins: getPlugins({
+      ts: {
+        tsconfig: './tsconfig.node.json',
+      },
+      nodeResolve: { browser: false, exportConditions: ['node'] },
+    }),
+  },
+  // node esm
+  IS_PROD && {
+    input: 'src/node.ts',
+    output: getOutput({
+      entryFileNames: '[name].mjs',
     }),
     external: getExternal(),
     plugins: getPlugins({

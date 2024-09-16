@@ -10,17 +10,21 @@
   "exports": {
     ".": {
       "types": {
-        "require": "./types/node.d.ts",
+        "require": "./types/node.d.cts",
         "default": "./types/web.es.d.ts"
       },
-      "require": "./dist/node.js",
+      "require": "./dist/node.cjs",
       "default": "./dist/web.es.js"
     },
     "./cjs": {
-      "types": "./types/node.d.ts",
-      "default": "./dist/node.js"
+      "types": "./types/node.d.cts",
+      "default": "./dist/node.cjs"
     },
-    "./esm": {
+    "./mjs": {
+      "types": "./types/node.d.mts",
+      "default": "./dist/node.mjs"
+    },
+    "./web": {
       "types": "./types/web.es.d.ts",
       "default": "./dist/web.es.js"
     },
