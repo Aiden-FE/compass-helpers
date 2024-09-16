@@ -47,8 +47,12 @@ export function createFolderSync(
     ...options,
   };
   const target = resolve(cwd, targetPath);
-  const stats = statSync(target);
-  if (!stats) {
+  try {
+    const stats = statSync(target);
+    if (!stats) {
+      mkdirSync(target, { recursive: true });
+    }
+  } catch {
     mkdirSync(target, { recursive: true });
   }
 }
