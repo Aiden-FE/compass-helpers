@@ -9,7 +9,7 @@ export default function replaceVariablesInString(templateString: string, params:
     const currentValue = params[currentKey];
     // eslint-disable-next-line no-useless-escape
     const reg = new RegExp(`{{[\s\x20]*(${currentKey})[\s\x20]*}}`, 'g');
-    // eslint-disable-next-line no-param-reassign
+
     lastString = lastString.replace(reg, currentValue);
     return lastString;
   }, templateString);

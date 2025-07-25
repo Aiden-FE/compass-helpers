@@ -10,6 +10,6 @@
  * @module
  */
 
-export * from './common-modules';
-export * from './interfaces';
-export * from './web-modules';
+export * from '@/interfaces';
+export * from '@/common-utils';
+export * from '@/browser-utils';

@@ -1,28 +1,47 @@
 import { builtinModules } from 'module';
+import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import json from '@rollup/plugin-json';
-import ts from 'rollup-plugin-ts';
+import ts from '@rollup/plugin-typescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import terser from '@rollup/plugin-terser';
 import cleanup from 'rollup-plugin-cleanup';
 import summary from 'rollup-plugin-summary';
 import { visualizer } from 'rollup-plugin-visualizer';
+import alias from '@rollup/plugin-alias';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+const packageJson = path.join(dirname, 'package.json');
+const { name, browser } = JSON.parse(fs.readFileSync(packageJson, 'utf-8'));
 
 const IS_PROD = !process.env.ROLLUP_WATCH;
 
 /**
  * @description 获取构建插件
- * @param {{[key: 'json'|'ts'|'nodeResolve'|'commonjs'|'terser'|'cleanup'|'summary'|'visualizer']: object}} [options]
+ * @typedef {import('rollup').Plugin} Plugin
+ * @param {Record<'json'|'ts'|'nodeResolve'|'commonjs'|'terser'|'cleanup'|'summary'|'visualizer', object>} [options]
  * @param {('json'|'ts'|'nodeResolve'|'commonjs'|'terser'|'cleanup'|'summary'|'visualizer')[]} [ignorePlugins]
- * @returns
+ * @returns {Plugin[]}
  */
 function getPlugins(options = {}, ignorePlugins = []) {
   return [
-    !ignorePlugins.includes('json') && json(options.json || undefined),
-    !ignorePlugins.includes('ts') && ts(options.ts || undefined),
-    // 如果目标是node环境,需要提供选项{ exportConditions: ["node"] }以支持构建
-    // !ignorePlugins.includes('nodeResolve') && nodeResolve(options.nodeResolve || undefined),
+    !ignorePlugins.includes('alias') &&
+      alias({
+        entries: {
+          '@': path.resolve(dirname, 'src'),
+        },
+        ...(options.alias || undefined),
+      }),
     !ignorePlugins.includes('commonjs') && commonjs(options.commonjs || undefined),
+    !ignorePlugins.includes('nodeResolve') && nodeResolve(options.nodeResolve || undefined),
+    !ignorePlugins.includes('json') && json(options.json || undefined),
+    !ignorePlugins.includes('ts') &&
+      ts({
+        outputToFilesystem: true,
+        ...(options.ts || undefined),
+      }),
     IS_PROD && !ignorePlugins.includes('terser') && terser(options.terser || undefined),
     IS_PROD && !ignorePlugins.includes('cleanup') && cleanup({ comments: 'none', ...(options.cleanup || {}) }),
     IS_PROD &&
@@ -43,17 +62,19 @@ function getPlugins(options = {}, ignorePlugins = []) {
 
 /**
  * @description 获取要排除的外部选项
- * @param {string[]} additionalExternal
- * @return {string[]}
+ * @typedef {import('rollup').ExternalOption} ExternalOption
+ * @param {string[]} options
+ * @returns {ExternalOption}
  */
-function getExternal(additionalExternal = []) {
-  return [...builtinModules].concat(additionalExternal || []);
+function getExternal(options = []) {
+  return [...builtinModules].concat(options || []);
 }
 
 /**
  * @description 获取输出配置项
- * @param options 文档: https://www.rollupjs.com/guide/big-list-of-options
- * @return {Record<string, unknown>}
+ * @typedef {import('rollup').OutputOptions} OutputOptions
+ * @param {OutputOptions} options
+ * @returns {OutputOptions}
  */
 function getOutput(options = {}) {
   return {
@@ -67,43 +88,7 @@ function getOutput(options = {}) {
 }
 
 export default [
-  // umd
-  IS_PROD && {
-    input: 'src/web.ts',
-    output: getOutput({
-      format: 'umd',
-      file: 'dist/compass-helpers.umd.js',
-      name: 'CompassHelpers', // Set your library name.
-      dir: undefined,
-      chunkFileNames: undefined,
-      entryFileNames: undefined,
-      exports: 'auto',
-    }),
-    external: getExternal(),
-    plugins: getPlugins({
-      ts: {
-        tsconfig: './tsconfig.web.json',
-      },
-      nodeResolve: { browser: true },
-    }),
-  },
-  // node cjs
-  IS_PROD && {
-    input: 'src/node.ts',
-    output: getOutput({
-      format: 'cjs',
-      exports: 'auto',
-      entryFileNames: '[name].cjs',
-    }),
-    external: getExternal(),
-    plugins: getPlugins({
-      ts: {
-        tsconfig: './tsconfig.node.json',
-      },
-      nodeResolve: { browser: false, exportConditions: ['node'] },
-    }),
-  },
-  // node esm
+  // esm of node
   IS_PROD && {
     input: 'src/node.ts',
     output: getOutput({
@@ -114,17 +99,37 @@ export default [
       ts: {
         tsconfig: './tsconfig.node.json',
       },
-      nodeResolve: { browser: false, exportConditions: ['node'] },
     }),
   },
-  // browser
-  {
-    input: 'src/web.ts',
-    output: getOutput(),
+  // umd of browser
+  IS_PROD && {
+    input: 'src/browser.ts',
+    output: getOutput({
+      format: 'umd',
+      name,
+      file: browser,
+      chunkFileNames: undefined,
+      entryFileNames: undefined,
+      dir: undefined,
+      exports: 'auto',
+    }),
     external: getExternal(),
     plugins: getPlugins({
       ts: {
-        tsconfig: './tsconfig.web.json',
+        tsconfig: './tsconfig.browser.json',
+      },
+    }),
+  },
+  // esm of browser
+  {
+    input: 'src/browser.ts',
+    output: getOutput({
+      entryFileNames: '[name].js',
+    }),
+    external: getExternal(),
+    plugins: getPlugins({
+      ts: {
+        tsconfig: './tsconfig.browser.json',
       },
     }),
     watch: {

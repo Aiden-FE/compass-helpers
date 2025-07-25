@@ -1,103 +1,89 @@
 {
   "name": "@compass-aiden/helpers",
+  "version": "0.3.1",
   "type": "module",
-  "version": "0.4.1",
   "description": "实用程序库",
-  "main": "dist/web.es.js",
-  "typings": "types/web.es.d.ts",
-  "jsdelivr": "dist/compass-helpers.umd.js",
-  "unpkg": "dist/compass-helpers.umd.js",
+  "main": "dist/browser.js",
+  "types": "dist/types/src/browser.d.ts",
+  "browser": "dist/compass-helpers.umd.js",
   "exports": {
     ".": {
-      "types": {
-        "require": "./types/node.d.cts",
-        "default": "./types/web.es.d.ts"
+      "import": {
+        "types": "./dist/types/src/browser.d.ts",
+        "default": "./dist/browser.js"
       },
-      "require": "./dist/node.cjs",
-      "default": "./dist/web.es.js"
+      "require": {
+        "types": "./dist/types/src/node.d.ts",
+        "default": "./dist/node.mjs"
+      }
     },
-    "./cjs": {
-      "types": "./types/node.d.cts",
-      "default": "./dist/node.cjs"
-    },
-    "./mjs": {
-      "types": "./types/node.d.mts",
+    "./node": {
+      "types": "./dist/types/src/node.d.ts",
       "default": "./dist/node.mjs"
     },
-    "./web": {
-      "types": "./types/web.es.d.ts",
-      "default": "./dist/web.es.js"
-    },
-    "./dist/*": "./dist/*",
-    "./types/*": "./types/*"
+    "./browser": {
+      "types": "./dist/types/src/browser.d.ts",
+      "default": "./dist/browser.js"
+    }
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
-  "author": "Aiden_FE@outlook.com",
-  "repository": "https://github.com/Aiden-FE/compass-helpers",
-  "license": "MIT",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "access": "public"
+  "scripts": {
+    "serve": "npx -y serve",
+    "dev": "rollup -w -c rollup.config.mjs",
+    "build": "npm run clean && rollup -c rollup.config.mjs",
+    "build:doc": "npm run build:doc-browser && npm run build:doc-node",
+    "build:doc-browser": "typedoc src/browser.ts --cacheBust --tsconfig tsconfig.browser.json --out dist/docs/browser --name \"Compass helpers for browser platforms\"",
+    "build:doc-node": "typedoc src/node.ts --cacheBust --tsconfig tsconfig.node.json --out dist/docs/node --name \"Compass helpers for node platforms\"",
+    "format": "prettier --write ./src",
+    "lint": "eslint \"{src,test}/**/*.ts\" --fix",
+    "test": "jest --coverage",
+    "clean": "rimraf dist",
+    "prepare": "npx simple-git-hooks"
   },
   "keywords": [
     "utils",
-    "helpers",
-    "helper",
-    "tools",
-    "compass utils",
-    "compass helpers"
+    "browser-utils",
+    "node-utils"
   ],
-  "scripts": {
-    "dev": "rollup -w -c rollup.config.js",
-    "build": "npm run clean && rollup -c rollup.config.js",
-    "lint": "eslint src --ext .ts,.js --fix",
-    "format": "prettier --write src",
-    "test": "jest --coverage",
-    "build:doc": "npm run build:doc-web && npm run build:doc-node",
-    "build:doc-web": "typedoc src/web.ts --tsconfig tsconfig.web.json --out docs/web --name \"Compass helpers for web platforms\"",
-    "build:doc-node": "typedoc src/node.ts --tsconfig tsconfig.node.json --out docs/node --name \"Compass helpers for node platforms\"",
-    "prepare": "npx simple-git-hooks",
-    "clean": "rimraf dist && rimraf types && rimraf coverage && rimraf docs && rimraf stats.html"
+  "author": "Aiden_FE@outlook.com",
+  "license": "MIT",
+  "repository": "https://github.com/Aiden-FE/compass-helpers",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.31.0",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.15",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "globals": "^16.3.0",
+    "jest": "^30.0.4",
+    "prettier": "^3.6.2",
+    "pretty-quick": "^4.2.2",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.45.1",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-summary": "^3.0.1",
+    "rollup-plugin-visualizer": "^6.0.3",
+    "simple-git-hooks": "^2.13.0",
+    "ts-jest": "^29.4.0",
+    "tslib": "^2.8.1",
+    "typedoc": "^0.28.7",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx pretty-quick --staged",
-    "commit-msg": "npx --no -- commitlint --edit $1"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.1.0",
-    "@commitlint/config-conventional": "^19.1.0",
-    "@compass-aiden/eslint-config": "^1.6.3",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-terser": "^0.4.4",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.26",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@zerollup/ts-transform-paths": "^1.7.18",
-    "eslint": "^8.57.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^18.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-prettier": "^5.1.3",
-    "jest": "^29.7.0",
-    "prettier": "^3.2.5",
-    "pretty-quick": "^4.0.0",
-    "rimraf": "^5.0.5",
-    "rollup": "^4.12.1",
-    "rollup-plugin-cleanup": "^3.2.1",
-    "rollup-plugin-summary": "^2.0.0",
-    "rollup-plugin-ts": "^3.4.5",
-    "rollup-plugin-visualizer": "^5.12.0",
-    "simple-git-hooks": "^2.10.0",
-    "ts-jest": "^29.1.2",
-    "tslib": "^2.6.2",
-    "typedoc": "^0.25.12",
-    "typescript": "^5.4.2"
+    "commit-msg": "npx --no -- commitlint --edit $1",
+    "pre-commit": "npx pretty-quick --staged"
   }
 }

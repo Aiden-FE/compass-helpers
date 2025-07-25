@@ -1,4 +1,4 @@
-import compareVersion from '@/common-modules/compare-version';
+import compareVersion from './compare-version';
 
 describe('Test compareVersion', () => {
   it('should -1', () => {

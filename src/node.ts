@@ -12,6 +12,6 @@
  * @module
  */
 
-export * from './common-modules';
-export * from './interfaces';
-export * from './node-modules';
+export * from '@/interfaces';
+export * from '@/common-utils';
+export * from '@/node-utils';
