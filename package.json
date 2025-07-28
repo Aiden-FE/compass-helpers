@@ -1,6 +1,6 @@
 {
   "name": "@compass-aiden/helpers",
-  "version": "0.3.1",
+  "version": "0.5.0",
   "type": "module",
   "description": "实用程序库",
   "main": "dist/browser.js",
