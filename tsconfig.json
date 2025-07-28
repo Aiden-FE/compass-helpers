@@ -1,26 +1,25 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ES2022",
     "module": "ESNext",
     "lib": ["ESNext"],
     "strict": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "types",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "moduleResolution": "bundler",
     "outDir": "dist",
+    "declarationDir": "dist/types",
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@": ["src"],
       "@/*": ["src/*"]
     },
-    "types": [],
-    "plugins": [{ "transform": "@zerollup/ts-transform-paths" }]
+    "types": []
   },
   "references": [
-    { "path": "./tsconfig.web.json" },
+    { "path": "./tsconfig.browser.json" },
     { "path": "./tsconfig.node.json" },
     { "path": "./tsconfig.test.json" }
   ]

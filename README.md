@@ -2,13 +2,13 @@
 
 > 实用程序库
 
-[Web端使用文档](https://aiden-fe.github.io/compass-helpers/web/)
+[Web端使用文档](https://aiden-fe.github.io/compass-helpers/browser/)
 
 [Node端使用文档](https://aiden-fe.github.io/compass-helpers/node/)
 
 ## Getting Started
 
-### web项目使用
+### browser项目使用
 
 npm方式安装:
 
@@ -20,7 +20,7 @@ import { formatDate } from '@compass-aiden/helpers';
 // 全量导入
 import * as allHelpers from '@compass-aiden/helpers';
 // 通过别名路径导入esm文件
-import { formatDate } from '@compass-aiden/helpers/web';
+import { formatDate } from '@compass-aiden/helpers/esm';
 ```
 
 浏览器script标签安装:
@@ -48,8 +48,6 @@ const helpers = require('@compass-aiden/helpers');
 /** 在type: module启用ESM环境下,请参考如下方式 */
 // 通过别名路径导入cjs文件,如果不能识别条件导出,tsconfig可设置 `{ "moduleResolution": "bundler" }`
 import { createFile } from '@compass-aiden/helpers/cjs';
-// 导入esm文件
-import { createFile } from '@compass-aiden/helpers/mjs';
 // 自动导入默认cjs文件, 当 tsconfig 配置包含 `{ "moduleResolution": "NodeNext" }`时可用
 import { createFile } from '@compass-aiden/helpers';
 ```
@@ -71,20 +69,20 @@ import { createFile } from '@compass-aiden/helpers';
 
 ### 添加一个新的工具函数
 
-1. 请先确定该函数适用的平台 Web/Node/Common
-2. 通用函数请放入 `src/common-modules`
-3. Web平台函数放入 `src/web-modules`
-4. Node平台函数放入 `src/node-modules`
+1. 请先确定该函数适用的平台 Browser/Node/Common
+2. 通用函数请放入 `src/common-utils`
+3. browser 平台函数放入 `src/browser-utils`
+4. Node 平台函数放入 `src/node-utils`
 5. 为函数添加一定的文档描述,如下示例
 
 ```typescript
-// src/web-modules/example.ts
+// src/browser-utils/example.ts
 
 /**
  * @category Tools
  */
 export default function example() {
-  console.log('可指定的category在 src/web.ts 或 src/node.ts 文件顶部声明');
+  console.log('可指定的category在 src/browser.ts 或 src/node.ts 文件顶部声明');
 }
 ```
 
@@ -92,4 +90,4 @@ export default function example() {
 
 ### Publish library
 
-1. 提交合并请求至master即可
+提交合并请求至master即可
