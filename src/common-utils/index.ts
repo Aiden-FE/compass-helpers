@@ -1,8 +1,19 @@
 import compareVersion from './compare-version';
-import encodePhoneNumber from './encode-phone-number';
 import formatDate from './format-date';
+import numberToExcelColumn from './number-to-excel-column';
 import promiseTask from './promise-task';
 import replaceVariablesInString from './replace-variables-in-string';
+import replaceVarsInPath from './replace-vars-in-path';
 import Logger from './logger';
 
-export { compareVersion, encodePhoneNumber, formatDate, promiseTask, replaceVariablesInString, Logger };
+export {
+  compareVersion,
+  formatDate,
+  numberToExcelColumn,
+  promiseTask,
+  replaceVariablesInString,
+  replaceVarsInPath,
+  Logger,
+};
+export * from './mask-string';
+export * from './tree-utils';

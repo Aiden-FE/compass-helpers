@@ -113,6 +113,8 @@ interface FormatOptions {
  * @description 检测是否在浏览器环境
  */
 function isBrowser(): boolean {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return typeof window !== 'undefined' && typeof document !== 'undefined';
 }
 

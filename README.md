@@ -90,4 +90,4 @@ export default function example() {
 
 ### Publish library
 
-1. 提交合并请求至master即可
+提交合并请求至master即可

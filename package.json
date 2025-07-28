@@ -34,12 +34,12 @@
     "dev": "rollup -w -c rollup.config.mjs",
     "build": "npm run clean && rollup -c rollup.config.mjs",
     "build:doc": "npm run build:doc-browser && npm run build:doc-node",
-    "build:doc-browser": "typedoc src/browser.ts --cacheBust --tsconfig tsconfig.browser.json --out dist/docs/browser --name \"Compass helpers for browser platforms\"",
-    "build:doc-node": "typedoc src/node.ts --cacheBust --tsconfig tsconfig.node.json --out dist/docs/node --name \"Compass helpers for node platforms\"",
+    "build:doc-browser": "typedoc src/browser.ts --cacheBust --tsconfig tsconfig.browser.json --out docs/browser --name \"Compass helpers for browser platforms\"",
+    "build:doc-node": "typedoc src/node.ts --cacheBust --tsconfig tsconfig.node.json --out docs/node --name \"Compass helpers for node platforms\"",
     "format": "prettier --write ./src",
     "lint": "eslint \"{src,test}/**/*.ts\" --fix",
     "test": "jest --coverage",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rimraf docs",
     "prepare": "npx simple-git-hooks"
   },
   "keywords": [
